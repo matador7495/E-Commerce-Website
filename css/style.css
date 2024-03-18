@@ -231,3 +231,40 @@ section {
   color: var(--bg-color);
   transform: scale(0.9) translateY(-6px);
 }
+.feature {
+  padding: 10px 14% 10px;
+}
+.feature-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+  align-items: center;
+  gap: 2.5rem;
+}
+.feature .box {
+  padding: 15px 15px 15px 30px;
+  border-left: 4px solid var(--second-color);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  transition: all 0.6s;
+}
+.feature-icon i {
+  font-size: 33px;
+}
+.feature-text h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+.feature-text p {
+  font-size: var(--p-font);
+  font-weight: 400;
+  color: var(--second-color);
+  line-height: 33px;
+}
+.feature .box:hover {
+  transform: translateY(-4px) scale(1.02);
+  border-left: 4px solid var(--text-color);
+  cursor: pointer;
+}
