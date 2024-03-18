@@ -80,6 +80,11 @@ header {
 section {
   padding: 90px 14% 70px;
 }
+h2 {
+  text-align: center;
+  font-size: var(--h2-font);
+  font-weight: 700;
+}
 .home {
   position: relative;
   height: 100vh;
@@ -150,11 +155,6 @@ section {
 .brands-img img {
   width: 100%;
   height: auto;
-}
-.products > h2 {
-  text-align: center;
-  font-size: var(--h2-font);
-  font-weight: 700;
 }
 .products-container {
   display: grid;
@@ -267,4 +267,53 @@ section {
   transform: translateY(-4px) scale(1.02);
   border-left: 4px solid var(--text-color);
   cursor: pointer;
+}
+.selling-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, auto));
+  align-items: center;
+  gap: 2.5rem;
+  margin-top: 4rem;
+}
+.selling-item {
+  position: relative;
+  transition: all 0.6s;
+}
+.item-img {
+  overflow: hidden;
+  border-radius: 28px;
+}
+.item-img img {
+  display: block;
+  width: 100%;
+  transition: transform 0.5s;
+  cursor: pointer;
+}
+.item-img:hover img {
+  transform: scale(1.05);
+}
+.item-icon {
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+}
+.item-icon a {
+  display: block;
+}
+.item-icon i {
+  margin-bottom: 20px;
+  width: 40px;
+  height: 40px;
+  background: var(--text-color);
+  color: var(--bg-color);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  opacity: 0;
+  transition: all 0.6s;
+}
+.selling-item:hover .item-icon i {
+  opacity: 1;
+  transform: rotate3d(0, 0, 1, 360deg) scale(1.03);
 }
