@@ -136,3 +136,18 @@ section {
 .btn i {
   margin-left: 9px;
 }
+.brands {
+  padding: 30px 14%;
+  background-color: var(--text-color);
+}
+.brands-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+.brands-img img {
+  width: 100%;
+  height: auto;
+}
