@@ -356,3 +356,59 @@ h2 {
   font-size: var(--p-font);
   cursor: pointer;
 }
+footer {
+  padding: 90px 14% 70px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20px, auto));
+  gap: 2rem;
+}
+.footer-box {
+  display: flex;
+  flex-direction: column;
+}
+.footer-box h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+.footer-box a {
+  color: var(--second-color);
+  margin-bottom: 0.8rem;
+  transition: all 0.5s ease;
+}
+.footer-box a:hover {
+  transform: translateX(-5px);
+  color: var(--text-color);
+}
+.social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 40px;
+  background-color: var(--text-color);
+  color: var(--bg-color);
+  font-size: 17px;
+  border-radius: 10px;
+  margin-right: 14px;
+  transform: transform 0.6s;
+}
+.social a:hover {
+  transform: rotate3d(0, 0, 1, 360deg) scale(1.06);
+  color: var(--bg-color);
+}
+.copyright {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 14% 20px;
+}
+.copy-text {
+  font-size: 15px;
+}
+.copy-img img {
+  width: 100%;
+  height: auto;
+}
