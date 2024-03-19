@@ -35,7 +35,7 @@ header {
   transition: all 0.6s;
 }
 .logo {
-  font-size: 33px;
+  font-size: 2rem;
   font-weight: 800;
   text-transform: uppercase;
   color: var(--text-color);
@@ -61,7 +61,7 @@ header {
 }
 .nav-right a {
   display: inline-block;
-  font-size: 22px;
+  font-size: 1.4rem;
   color: var(--text-color);
   margin: 0 20px;
   transition: all 0.6s;
@@ -70,7 +70,7 @@ header {
   transform: translateY(-5px) scale(1.1);
 }
 #menu-icon {
-  font-size: 27px;
+  font-size: 1.7rem;
   color: var(--text-color);
   z-index: 10001;
   margin-left: 10px;
@@ -122,23 +122,23 @@ h2 {
   line-height: 33px;
   margin-bottom: 35px;
 }
-.btn {
+.home-text .btn {
   display: inline-block;
   padding: 14px 42px;
   background-color: var(--text-color);
   color: var(--bg-color);
-  font-size: 15px;
+  font-size: var(--p-font);
   font-weight: 500;
   border: 2px solid transparent;
   transition: all 0.6s;
 }
-.btn:hover {
+.home-text .btn:hover {
   transform: scale(0.9) translateY(-6px);
   border: 2px solid var(--text-color);
   background-color: transparent;
   color: var(--text-color);
 }
-.btn i {
+.home-text .btn i {
   margin-left: 9px;
 }
 .brands {
@@ -311,7 +311,7 @@ h2 {
   justify-content: center;
   border-radius: 10px;
   opacity: 0;
-  transition: all 0.6s;
+  transition: all 1s;
 }
 .selling-item:hover .item-icon i {
   opacity: 1;
@@ -328,7 +328,7 @@ h2 {
 }
 .newsletter-text h2 {
   color: var(--bg-color);
-  font-size: 40px;
+  font-size: var(--h2-font);
   font-weight: 800;
   text-align: left;
 }
@@ -409,6 +409,148 @@ footer {
   font-size: 15px;
 }
 .copy-img img {
+  display: block;
   width: 100%;
   height: auto;
+}
+@media (max-width: 1610px) {
+  header {
+    padding: 15px 7%;
+  }
+  section,
+  footer,
+  .copyright {
+    padding: 55px 7%;
+  }
+  .brands {
+    padding: 20px 7%;
+  }
+  .feature {
+    padding: 10px 7%;
+  }
+}
+@media (max-width: 1500px) {
+  .home {
+    height: 75vh;
+  }
+  :root {
+    --h1-font: 4.8rem;
+    --h2-font: 2.8rem;
+    --p-font: 15px;
+  }
+  .newsletter-container form input:last-child {
+    padding: 10px;
+  }
+}
+@media (max-width: 1170px) {
+  header,
+  .feature {
+    padding: 10px 4%;
+  }
+  section,
+  footer,
+  .copyright {
+    padding: 60px 4%;
+  }
+  .brands {
+    padding: 30px 4%;
+  }
+  .feature-container,
+  .selling-container,
+  .newsletter-container {
+    grid-template-columns: repeat(auto-fit, minmax(300px, auto));
+  }
+}
+@media (max-width: 1050px) {
+  #menu-icon {
+    display: block;
+  }
+  .nav-list {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    padding: 40px 60px;
+    top: 0;
+    bottom: 0;
+    left: 100%;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-color);
+    transition: all 0.5s ease;
+  }
+  .nav-list a {
+    display: block;
+    color: #979797;
+    padding: 0;
+    margin: 0px 0px 30px 0px;
+    font-size: 2rem;
+    font-weight: 400;
+  }
+  .nav-list.open {
+    left: 0;
+  }
+  :root {
+    --h1-font: 4.5rem;
+    --h2-font: 2.6rem;
+  }
+  .logo {
+    font-size: 1.5rem;
+  }
+  .home {
+    align-items: flex-start;
+  }
+  .brands {
+    padding: 40px 4%;
+  }
+  .brands-container {
+    gap: 25px;
+  }
+  .brands-img img {
+    width: 100%;
+    max-width: 100px;
+    height: auto;
+  }
+  .newsletter-container form input:first-child {
+    padding: 8px;
+  }
+  .newsletter-container form input:last-child {
+    font-size: 12px;
+  }
+  .footer-box h3 {
+    font-size: 18px;
+  }
+}
+@media (max-width: 532px) {
+  :root {
+    --h1-font: 2rem;
+    --h2-font: 1.8rem;
+    --p-font: 0.9rem;
+  }
+  .home-text p {
+    max-width: 210px;
+  }
+  .home-text .btn {
+    padding: 10px 15px;
+  }
+  .button {
+    padding: 12px 20px;
+  }
+  .nav-right a {
+    margin-right: 7px;
+  }
+  .newsletter-container {
+    padding: 45px 15px;
+  }
+  .newsletter-container form {
+    grid-template-columns: 1fr;
+  }
+  footer {
+    padding: 40px 6%;
+    grid-template-columns: 2fr auto;
+  }
+  .copyright {
+    justify-content: center;
+    padding: 0;
+  }
 }
