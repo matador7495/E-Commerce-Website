@@ -15,17 +15,18 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet" />
+    <!-- aos -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   </head>
   <body>
     <!-- header -->
     <header>
       <a href="#" class="logo">Shop.co</a>
       <ul class="nav-list">
-        <li><a href="#">Shop</a></li>
-        <li><a href="#">On Sale</a></li>
-        <li><a href="#">New Arrivals</a></li>
-        <li><a href="#">Brands</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#selling">On Sale</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
       <div class="nav-right">
         <a href="#"><i class="ri-search-line"></i></a>
@@ -35,8 +36,8 @@
       </div>
     </header>
     <!-- home -->
-    <section class="home">
-      <div class="home-text">
+    <section class="home" id="home">
+      <div class="home-text" data-aos="fade-up">
         <h6>New Arrivals</h6>
         <h1>New Arrivals <br />ready to rock</h1>
         <p>Qui officia deserunt molit anim id est labrumdu is aute iruret dolor in prehenderit in anterevo ludptate esse cillum.</p>
@@ -48,7 +49,7 @@
     </section>
     <!-- brands -->
     <div class="brands">
-      <div class="brands-container">
+      <div class="brands-container" data-aos="zoom-in">
         <div class="brands-img">
           <img src="img/g1.png" alt="versace" />
         </div>
@@ -67,11 +68,11 @@
       </div>
     </div>
     <!-- all products -->
-    <section class="products">
+    <section class="products" id="products">
       <!-- <div class="center-text"> -->
-      <h2>All Products</h2>
+      <h2 data-aos="fade-down">All Products</h2>
       <!-- </div> -->
-      <div class="products-container">
+      <div class="products-container" data-aos="zoom-in">
         <div class="product">
           <div class="product-image">
             <img src="/img/n1.png" />
@@ -273,13 +274,13 @@
           </div>
         </div>
       </div>
-      <div class="button">
-        <a href="#" class="btn-view-all">View all"></a>
+      <div class="button" data-aos="zoom-in">
+        <a href="#" class="btn-view-all">View all</a>
       </div>
     </section>
     <!-- feature -->
     <section class="feature">
-      <div class="feature-container">
+      <div class="feature-container" data-aos="fade-down">
         <div class="box">
           <div class="feature-icon">
             <i class="ri-bank-card-fill"></i>
@@ -310,9 +311,9 @@
       </div>
     </section>
     <!-- best selling -->
-    <section class="selling">
-      <h2>Best Seller</h2>
-      <div class="selling-container">
+    <section class="selling" id="selling">
+      <h2 data-aos="fade-up">Best Seller</h2>
+      <div class="selling-container" data-aos="zoom-in">
         <div class="selling-item">
           <div class="item-img">
             <img src="img/n1.png" />
@@ -346,8 +347,8 @@
       </div>
     </section>
     <!-- newsletter -->
-    <section class="newsletter">
-      <div class="newsletter-container">
+    <section class="newsletter" id="contact">
+      <div class="newsletter-container" data-aos="zoom-in">
         <div class="newsletter-text">
           <h2>Get On the List!</h2>
           <p>Sign up with your email address to receive updates.</p>
@@ -359,7 +360,7 @@
       </div>
     </section>
     <!-- footer -->
-    <footer>
+    <footer data-aos="fade-down">
       <div class="footer-box">
         <h3>Company</h3>
         <a href="#">About</a>
@@ -401,5 +402,12 @@
     </div>
     <!-- custom js link -->
     <script src="./js/script.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        offset: 300,
+        duration: 1450,
+      });
+    </script>
   </body>
 </html>
