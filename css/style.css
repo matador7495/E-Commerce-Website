@@ -11,7 +11,7 @@
   --bg-color: #ffffff;
   --text-color: #000000;
   --main-color: #f0f0f0;
-  --other-color: #ffc633;
+  --other-color: #fdbd18;
   --second-color: #616060;
   --h1-font: 5.5rem;
   --h2-font: 3.5rem;
@@ -154,14 +154,17 @@ h2 {
 }
 .brands-img img {
   width: 100%;
-  height: auto;
 }
 .products-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, auto));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   align-items: center;
-  gap: 1.5rem;
+  column-gap: 2rem;
+  row-gap: 3.5rem;
   margin-top: 4rem;
+}
+.product {
+  position: relative;
 }
 .product-image {
   overflow: hidden;
@@ -181,9 +184,17 @@ h2 {
   font-size: 17px;
   font-weight: 700;
   margin-bottom: 5px;
+ text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden; 
+}
+.product-rating {
+  position: absolute;
+  top: 4px;
+  left: 10px;
 }
 .product-rating a {
-  font-size: 1rem;
+  font-size: 1.3rem;
   color: var(--other-color);
   margin-right: 5px;
 }
@@ -191,7 +202,7 @@ h2 {
   display: flex;
   align-content: center;
   justify-content: space-between;
-  margin-top: 5px;
+  margin-top: 15px;
 }
 .product-buy a {
   font-size: var(--p-font);
