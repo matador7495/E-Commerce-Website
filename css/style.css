@@ -475,7 +475,7 @@ footer {
   border-bottom: none;
 }
 .cart-menu .cart-item img {
-  width: 80px;
+  width: 90px;
   height: auto;
   float: left;
   margin-right: 10px;
@@ -484,13 +484,16 @@ footer {
   overflow: hidden;
 }
 .cart-menu .cart-item .item-name {
-  font-size: 18px;
+  font-size: 14px;
   font-weight: bold;
   color: #333;
-  margin: 0;
+  margin-bottom: 10px;
 }
 .cart-menu .cart-item .item-price {
   color: #777;
+}
+.cart-menu .item-actions {
+  margin-top: 10px;
 }
 .cart-menu .cart-item .item-quantity {
   margin-top: 5px;
