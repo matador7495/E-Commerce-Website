@@ -4,6 +4,9 @@ import { fetchData } from "/utils/httpReq.js";
 const menu = document.querySelector("#menu-icon");
 const navList = document.querySelector(".nav-list");
 const productsContainer = document.querySelector(".products-container");
+const cartBtn = document.querySelector(".cart-button");
+const cartMenu = document.querySelector(".cart-menu");
+const closeBtn = document.querySelector(".close-btn");
 //function
 const renderData = async (products) => {
   productsContainer.innerHTML = "";
@@ -33,12 +36,17 @@ const renderData = async (products) => {
     productsContainer.innerHTML += JSX;
   });
 };
-
 const init = async () => {
   const allProducts = await fetchData();
   renderData(allProducts);
 };
+const toggleCartMenu = () => {
+  cartMenu.classList.toggle("show");
+};
+// Event
 document.addEventListener("DOMContentLoaded", init);
+cartBtn.addEventListener("click", toggleCartMenu);
+closeBtn.addEventListener("click", toggleCartMenu);
 //AOS event
 menu.onclick = () => {
   menu.classList.toggle("ri-menu-line");

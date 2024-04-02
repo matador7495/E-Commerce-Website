@@ -184,9 +184,9 @@ h2 {
   font-size: 17px;
   font-weight: 700;
   margin-bottom: 5px;
- text-overflow: ellipsis;
+  text-overflow: ellipsis;
   white-space: nowrap;
-  overflow: hidden; 
+  overflow: hidden;
 }
 .product-rating {
   position: absolute;
@@ -424,6 +424,116 @@ footer {
   width: 100%;
   height: auto;
 }
+.cart-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 320px;
+  height: 100vh;
+  background-color: #f4f4f4;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: right 0.3s ease;
+  z-index: 1000;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.cart-menu::-webkit-scrollbar {
+  display: none;
+}
+.cart-menu.show {
+  right: 0;
+}
+.cart-menu .cart-header {
+  background-color: #4caf50;
+  padding: 20px;
+  border-bottom: 1px solid #ccc;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+}
+.cart-menu .cart-header h2 {
+  margin: 0;
+  font-size: 24px;
+}
+.cart-menu .close-btn {
+  cursor: pointer;
+  font-size: 24px;
+  color: #fff;
+}
+.cart-menu .close-btn:hover {
+  color: #333;
+}
+.cart-menu .cart-items {
+  padding: 20px;
+}
+.cart-menu .cart-item {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 20px;
+}
+.cart-menu .cart-item:last-child {
+  border-bottom: none;
+}
+.cart-menu .cart-item img {
+  width: 80px;
+  height: auto;
+  float: left;
+  margin-right: 10px;
+}
+.cart-menu .cart-item .item-info {
+  overflow: hidden;
+}
+.cart-menu .cart-item .item-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+.cart-menu .cart-item .item-price {
+  color: #777;
+}
+.cart-menu .cart-item .item-quantity {
+  margin-top: 5px;
+  color: #555;
+}
+.cart-menu .cart-footer {
+  padding: 20px;
+  border-top: 1px solid #ccc;
+}
+.cart-menu .cart-footer .total {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+.quantity-btn {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 14px;
+  border-radius: 50%;
+}
+.quantity-btn:hover {
+  background-color: #45a049;
+}
+.item-quantity {
+  margin: 0 10px;
+}
+.remove-btn {
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 14px;
+  border-radius: 50%;
+  margin-left: 10px;
+}
+.remove-btn:hover {
+  background-color: #d32f2f;
+}
+/* Responsive */
 @media (max-width: 1610px) {
   header {
     padding: 15px 7%;
@@ -537,6 +647,9 @@ footer {
     --h1-font: 2rem;
     --h2-font: 1.8rem;
     --p-font: 0.9rem;
+  }
+  .cart-menu {
+    width: 100%;
   }
   .home-text p {
     max-width: 210px;
