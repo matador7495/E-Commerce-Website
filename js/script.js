@@ -7,6 +7,7 @@ const productsContainer = document.querySelector(".products-container");
 const cartBtn = document.querySelector(".cart-button");
 const cartMenu = document.querySelector(".cart-menu");
 const closeBtn = document.querySelector(".close-btn");
+const totalPriceDisplay = document.querySelector(".total-price");
 // Function to get cart items from localStorage
 const getCartItems = () => {
   return JSON.parse(localStorage.getItem("cartItems")) || [];
@@ -67,6 +68,15 @@ const removeItemFromCart = (productId) => {
     productButton.classList.add("add-to-cart");
   }
 };
+// Function to calculate the total price
+const calculateTotal = () => {
+  const cartItems = getCartItems();
+  let total = 0;
+  cartItems.forEach((item) => {
+    total += item.price * item.quantity;
+  });
+  return total.toFixed(2); // Return total with two decimal places
+};
 // Function to render the cart
 const renderCart = () => {
   // Get the cart element
@@ -94,6 +104,8 @@ const renderCart = () => {
     `;
     cartElement.innerHTML += itemElement;
   });
+  // Calculate and display the total price
+  totalPriceDisplay.textContent = `Total-Price: $${calculateTotal()}`;
   const decreaseButtons = document.querySelectorAll(".decrease");
   decreaseButtons.forEach((button) => {
     button.addEventListener("click", () => {

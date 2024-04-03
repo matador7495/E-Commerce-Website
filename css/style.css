@@ -478,14 +478,14 @@ footer {
   margin-bottom: 20px;
   border-bottom: 1px solid #ccc;
   padding-bottom: 20px;
+  display: flex;
 }
 .cart-menu .cart-item:last-child {
   border-bottom: none;
 }
 .cart-menu .cart-item img {
   width: 90px;
-  height: auto;
-  float: left;
+  height: 90px;
   margin-right: 10px;
 }
 .cart-menu .cart-item .item-info {
@@ -506,12 +506,15 @@ footer {
 .cart-menu .cart-item .item-quantity {
   margin-top: 5px;
   color: #555;
+  width: 10px;
+  display: inline-block;
+  text-align: center;
 }
 .cart-menu .cart-footer {
   padding: 20px;
   border-top: 1px solid #ccc;
 }
-.cart-menu .cart-footer .total {
+.cart-menu .cart-footer .total-price {
   font-size: 18px;
   font-weight: bold;
   color: #333;
