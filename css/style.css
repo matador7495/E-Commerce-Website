@@ -131,6 +131,7 @@ h2 {
   font-weight: 500;
   border: 2px solid transparent;
   transition: all 0.6s;
+  border-radius: 5px;
 }
 .home-text .btn:hover {
   transform: scale(0.9) translateY(-6px);
@@ -233,18 +234,18 @@ h2 {
   text-align: center;
   margin-top: 4rem;
 }
-.btn-view-all {
+.btn-view-toggle {
   display: inline-block;
   padding: 14px 42px;
-  background-color: transparent;
-  color: var(--text-color);
+  background-color: var(--text-color);
+  color: var(--other-color);
   font-size: 15px;
   font-weight: 500;
   border: 1px solid var(--second-color);
-  border-radius: 30px;
+  border-radius: 25px;
   transition: all 0.6s;
 }
-.btn-view-all:hover {
+.btn-view-toggle:hover {
   background-color: var(--text-color);
   border: 1px solid var(--text-color);
   color: var(--bg-color);

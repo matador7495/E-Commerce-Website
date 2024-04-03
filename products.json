@@ -4,55 +4,69 @@
     "name": "Crew Neck Short Sleeve T-Shirt",
     "price": 20,
     "image": "/img/n1.png",
-    "rate" : 3
+    "rate": 3
   },
   {
     "id": 2,
     "name": "Men's Light Blue Jeans",
     "price": 40,
     "image": "/img/n2.png",
-    "rate" : 5
+    "rate": 5
   },
   {
     "id": 3,
     "name": "Long Sleeve Shirt Cotton",
     "price": 35,
     "image": "/img/n3.png",
-    "rate" : 2
+    "rate": 2
   },
   {
     "id": 4,
     "name": "Men's Black T-shirt With Logo",
     "price": 32,
     "image": "/img/n4.png",
-    "rate" : 4
+    "rate": 4
   },
   {
     "id": 5,
     "name": "Striped Long Sleeve Shirt",
     "price": 42,
     "image": "/img/n5.png",
-    "rate" : 4
+    "rate": 4
   },
   {
     "id": 6,
     "name": "Blue jean shorts on a white background",
     "price": 15,
     "image": "/img/n6.png",
-    "rate" : 5
+    "rate": 5
   },
   {
     "id": 7,
     "name": "Motivational Courage T-Shirt",
     "price": 28,
     "image": "/img/n7.png",
-    "rate" : 1
+    "rate": 1
   },
   {
     "id": 8,
     "name": "Black cotton blend mid-rise slim-cut jeans",
     "price": 50,
     "image": "/img/n8.png",
-    "rate" : 4
+    "rate": 4
+  },
+  {
+    "id": 9,
+    "name": "Striped Long Sleeve Shirt",
+    "price": 32,
+    "image": "/img/n5.png",
+    "rate": 3
+  },
+  {
+    "id": 10,
+    "name": "Motivational Courage T-Shirt",
+    "price": 38,
+    "image": "/img/n7.png",
+    "rate": 5
   }
 ]

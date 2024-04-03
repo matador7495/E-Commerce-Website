@@ -8,6 +8,10 @@ const cartBtn = document.querySelector(".cart-button");
 const cartMenu = document.querySelector(".cart-menu");
 const closeBtn = document.querySelector(".close-btn");
 const totalPriceDisplay = document.querySelector(".total-price");
+const viewToggleButton = document.querySelector(".btn-view-toggle");
+let allProducts = [];
+let isAllDisplayed = false;
+let displayedProductsCount = 4;
 // Function to get cart items from localStorage
 const getCartItems = () => {
   return JSON.parse(localStorage.getItem("cartItems")) || [];
@@ -128,7 +132,7 @@ const renderCart = () => {
   });
 };
 // Function to render products data
-const renderData = async (products) => {
+const renderData = (products) => {
   productsContainer.innerHTML = "";
   const cartItems = getCartItems();
   products.forEach((product) => {
@@ -157,10 +161,24 @@ const renderData = async (products) => {
     productsContainer.innerHTML += JSX;
   });
 };
+// Event listener for View All / Collapse Products button
+viewToggleButton.addEventListener("click", (event) => {
+  event.preventDefault();
+  if (!isAllDisplayed) {
+    // Display all products
+    renderData(allProducts);
+    viewToggleButton.textContent = "Collapse Products";
+  } else {
+    // Display default number of products
+    renderData(allProducts.slice(0, displayedProductsCount));
+    viewToggleButton.textContent = "More Products";
+  }
+  isAllDisplayed = !isAllDisplayed;
+});
 // Initialize the application
 const init = async () => {
-  const allProducts = await fetchData();
-  renderData(allProducts);
+  allProducts = await fetchData();
+  renderData(allProducts.slice(0, displayedProductsCount));
   renderCart();
 };
 // Event listeners
