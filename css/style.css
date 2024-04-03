@@ -204,17 +204,25 @@ h2 {
   justify-content: space-between;
   margin-top: 15px;
 }
-.product-buy a {
+.product-buy button {
   font-size: var(--p-font);
   font-weight: 500;
   color: var(--second-color);
   transition: all 0.6s;
+  border: none;
+  background: transparent;
+  cursor: pointer;
 }
-.product-buy a:hover {
+.product-buy .add-to-cart:hover {
   color: var(--text-color);
 }
 .product-buy i {
   margin-left: 6px;
+  cursor: default;
+}
+.product .disabled {
+  color: #d32f2f;
+  cursor: not-allowed;
 }
 .product-price h6 {
   font-size: 19px;

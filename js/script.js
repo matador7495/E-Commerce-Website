@@ -11,35 +11,12 @@ const closeBtn = document.querySelector(".close-btn");
 const getCartItems = () => {
   return JSON.parse(localStorage.getItem("cartItems")) || [];
 };
-// Function to add event listeners to the "Add to cart" buttons
-const addToCartButtons = () => {
-  const buttons = document.querySelectorAll(".add-to-cart");
-  buttons.forEach((button) => {
-    button.addEventListener("click", (event) => {
-      // Prevent default behavior of the link
-      event.preventDefault();
-      // Find the parent product element
-      const productElement = event.target.closest(".product");
-      // Extract product information from the product element
-      const product = {
-        id: productElement.dataset.id,
-        name: productElement.querySelector("h3").textContent,
-        price: parseFloat(productElement.querySelector(".product-price h6").textContent.replace("$", "")),
-        image: productElement.querySelector(".product-image img").attributes[0].textContent,
-      };
-      // Add the product to the cart
-      addToCart(product);
-    });
-  });
-};
 // Function to handle adding a product to the cart
 const addToCart = (product) => {
   const cartItems = getCartItems();
   // Check if there are already items in the cart stored in localStorage
   const existingProductIndex = cartItems.findIndex((item) => item.id === product.id);
-  if (existingProductIndex !== -1) {
-    cartItems[existingProductIndex].quantity += 1;
-  } else {
+  if (existingProductIndex === -1) {
     product.quantity = 1;
     // Add the new product to the cartItems array
     cartItems.push(product);
@@ -48,6 +25,13 @@ const addToCart = (product) => {
   localStorage.setItem("cartItems", JSON.stringify(cartItems));
   // Render the updated cart
   renderCart();
+  // Change button text to "In Cart"
+  const buttons = document.querySelectorAll(`.product[data-id="${product.id}"] .add-to-cart`);
+  buttons.forEach((button) => {
+    button.textContent = "In Cart";
+    button.classList.add("disabled");
+    button.classList.remove("add-to-cart");
+  });
 };
 // Function to decrease the quantity of a product in the cart
 const decreaseQuantity = (productId) => {
@@ -67,6 +51,20 @@ const increaseQuantity = (productId) => {
     cartItems[productIndex].quantity += 1;
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
     renderCart();
+  }
+};
+// Function to remove an item from the cart
+const removeItemFromCart = (productId) => {
+  let cartItems = getCartItems();
+  const updatedCartItems = cartItems.filter((item) => item.id !== productId);
+  localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
+  renderCart();
+  // Find the product button and change its text to "Add to Cart"
+  const productButton = document.querySelector(`.product[data-id="${productId}"] .disabled`);
+  if (productButton) {
+    productButton.innerHTML = "Add To Cart <i class='ri-shopping-cart-fill'></i>";
+    productButton.classList.remove("disabled");
+    productButton.classList.add("add-to-cart");
   }
 };
 // Function to render the cart
@@ -89,7 +87,7 @@ const renderCart = () => {
           <button class="quantity-btn decrease" data-id="${item.id}"><i class="ri-subtract-line"></i></button>
           <span class="item-quantity">${item.quantity}</span>
           <button class="quantity-btn increase" data-id="${item.id}"><i class="ri-add-line"></i></button>
-          <button class="remove-btn"><i class="ri-delete-bin-line"></i></button>
+          <button class="remove-btn" data-id="${item.id}"><i class="ri-delete-bin-line"></i></button>
         </div>
       </div>
     </div>
@@ -108,11 +106,21 @@ const renderCart = () => {
       increaseQuantity(button.dataset.id);
     });
   });
+  // Add event listener to remove buttons
+  const removeButtons = document.querySelectorAll(".remove-btn");
+  removeButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const productId = button.dataset.id;
+      removeItemFromCart(productId);
+    });
+  });
 };
 // Function to render products data
 const renderData = async (products) => {
   productsContainer.innerHTML = "";
+  const cartItems = getCartItems();
   products.forEach((product) => {
+    const isInCart = cartItems.some((item) => +item.id === product.id);
     const JSX = `
     <div class="product" data-id="${product.id}">
       <div class="product-image">
@@ -124,10 +132,9 @@ const renderData = async (products) => {
       </div>
       <div class="product-info">
         <div class="product-buy">
-          <a href="#" class="add-to-cart">
-            Add to cart
-            <i class="ri-shopping-cart-fill"></i>
-          </a>
+          <button class="${isInCart ? "disabled" : "add-to-cart"}">
+            ${isInCart ? "In Cart" : "Add To Cart <i class='ri-shopping-cart-fill'></i>"}
+          </button>
         </div>
         <div class="product-price">
           <h6>$ ${product.price}</h6>
@@ -137,8 +144,6 @@ const renderData = async (products) => {
     `;
     productsContainer.innerHTML += JSX;
   });
-  // Call the function to add event listeners to the "Add to cart" buttons
-  addToCartButtons();
 };
 // Initialize the application
 const init = async () => {
@@ -148,7 +153,20 @@ const init = async () => {
 };
 // Event listeners
 document.addEventListener("DOMContentLoaded", init);
-cartBtn.addEventListener("click", () => {
+document.addEventListener("click", (event) => {
+  if (event.target.classList.contains("add-to-cart") && !event.target.classList.contains("disabled")) {
+    const productElement = event.target.closest(".product");
+    const product = {
+      id: productElement.dataset.id,
+      name: productElement.querySelector("h3").textContent,
+      price: parseFloat(productElement.querySelector(".product-price h6").textContent.replace("$", "")),
+      image: productElement.querySelector(".product-image img").attributes[0].textContent,
+    };
+    addToCart(product);
+  }
+});
+cartBtn.addEventListener("click", (event) => {
+  event.preventDefault();
   cartMenu.classList.toggle("show");
 });
 closeBtn.addEventListener("click", () => {
