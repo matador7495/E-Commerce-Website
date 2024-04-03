@@ -1,60 +1,15 @@
-//import
+// Import fetchData function from httpReq.js
 import { fetchData } from "/utils/httpReq.js";
-//selector
+// Selectors
 const menu = document.querySelector("#menu-icon");
 const navList = document.querySelector(".nav-list");
 const productsContainer = document.querySelector(".products-container");
 const cartBtn = document.querySelector(".cart-button");
 const cartMenu = document.querySelector(".cart-menu");
 const closeBtn = document.querySelector(".close-btn");
-// Function to handle adding a product to the cart
-const addToCart = (product) => {
-  // Check if there are already items in the cart stored in localStorage
-  let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-  // Add the new product to the cartItems array
-  cartItems.push(product);
-  // Store the updated cartItems array in localStorage
-  localStorage.setItem("cartItems", JSON.stringify(cartItems));
-  // Render the updated cart
-  renderCart();
-};
-// Function to render the cart
-const renderCart = () => {
-  // Get the cart element
-  const cartElement = document.querySelector(".cart-items");
-  // Clear any existing cart items
-  cartElement.innerHTML = "";
-  // Get the cart items from localStorage
-  const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-  // Loop through each item in the cart and render it
-  cartItems.forEach((item) => {
-    // const itemElement = document.createElement("div");
-    // itemElement.classList.add("cart-item");
-    // itemElement.innerHTML = `
-    //   <img src="${item.image}" alt="${item.name}">
-    //   <div class="item-info">
-    //     <h4 class="item-name">${item.name}</h4>
-    //     <p class="item-price">$${item.price}</p>
-    //   </div>
-    // `;
-    const itemElement = `
-    <div class="cart-item">
-      <img src="${item.image}" alt="${item.name}" />
-      <div class="item-info">
-        <h3 class="item-name">${item.name}</h3>
-        <span class="item-price">$${item.price}</span>
-        <div class="item-actions">
-          <button class="quantity-btn decrease"><i class="ri-subtract-line"></i></button>
-          <span class="item-quantity">1</span>
-          <button class="quantity-btn increase"><i class="ri-add-line"></i></button>
-          <button class="remove-btn"><i class="ri-delete-bin-line"></i></button>
-        </div>
-      </div>
-    </div>
-    `;
-    // cartElement.appendChild(itemElement);
-    cartElement.innerHTML += itemElement;
-  });
+// Function to get cart items from localStorage
+const getCartItems = () => {
+  return JSON.parse(localStorage.getItem("cartItems")) || [];
 };
 // Function to add event listeners to the "Add to cart" buttons
 const addToCartButtons = () => {
@@ -77,14 +32,91 @@ const addToCartButtons = () => {
     });
   });
 };
-//renderData function
+// Function to handle adding a product to the cart
+const addToCart = (product) => {
+  const cartItems = getCartItems();
+  // Check if there are already items in the cart stored in localStorage
+  const existingProductIndex = cartItems.findIndex((item) => item.id === product.id);
+  if (existingProductIndex !== -1) {
+    cartItems[existingProductIndex].quantity += 1;
+  } else {
+    product.quantity = 1;
+    // Add the new product to the cartItems array
+    cartItems.push(product);
+  }
+  // Store the updated cartItems array in localStorage
+  localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  // Render the updated cart
+  renderCart();
+};
+// Function to decrease the quantity of a product in the cart
+const decreaseQuantity = (productId) => {
+  const cartItems = getCartItems();
+  const productIndex = cartItems.findIndex((item) => item.id === productId);
+  if (productIndex !== -1 && cartItems[productIndex].quantity > 1) {
+    cartItems[productIndex].quantity -= 1;
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    renderCart();
+  }
+};
+// Function to increase the quantity of a product in the cart
+const increaseQuantity = (productId) => {
+  const cartItems = getCartItems();
+  const productIndex = cartItems.findIndex((item) => item.id === productId);
+  if (productIndex !== -1) {
+    cartItems[productIndex].quantity += 1;
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    renderCart();
+  }
+};
+// Function to render the cart
+const renderCart = () => {
+  // Get the cart element
+  const cartElement = document.querySelector(".cart-items");
+  // Clear any existing cart items
+  cartElement.innerHTML = "";
+  // Get the cart items from localStorage
+  const cartItems = getCartItems();
+  // Loop through each item in the cart and render it
+  cartItems.forEach((item) => {
+    const itemElement = `
+    <div class="cart-item">
+      <img src="${item.image}" alt="${item.name}" />
+      <div class="item-info">
+        <h3 class="item-name">${item.name}</h3>
+        <span class="item-price">$${item.price}</span>
+        <div class="item-actions">
+          <button class="quantity-btn decrease" data-id="${item.id}"><i class="ri-subtract-line"></i></button>
+          <span class="item-quantity">${item.quantity}</span>
+          <button class="quantity-btn increase" data-id="${item.id}"><i class="ri-add-line"></i></button>
+          <button class="remove-btn"><i class="ri-delete-bin-line"></i></button>
+        </div>
+      </div>
+    </div>
+    `;
+    cartElement.innerHTML += itemElement;
+  });
+  const decreaseButtons = document.querySelectorAll(".decrease");
+  decreaseButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      decreaseQuantity(button.dataset.id);
+    });
+  });
+  const increaseButtons = document.querySelectorAll(".increase");
+  increaseButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      increaseQuantity(button.dataset.id);
+    });
+  });
+};
+// Function to render products data
 const renderData = async (products) => {
   productsContainer.innerHTML = "";
   products.forEach((product) => {
     const JSX = `
     <div class="product" data-id="${product.id}">
       <div class="product-image">
-        <img src="${product.image}" />
+        <img src="${product.image}" alt="${product.name}" />
       </div>
       <h3>${product.name}</h3>
       <div class="product-rating">
@@ -101,18 +133,18 @@ const renderData = async (products) => {
           <h6>$ ${product.price}</h6>
         </div>
       </div>
-    </div> 
+    </div>
     `;
     productsContainer.innerHTML += JSX;
   });
   // Call the function to add event listeners to the "Add to cart" buttons
   addToCartButtons();
 };
-//init function
+// Initialize the application
 const init = async () => {
   const allProducts = await fetchData();
   renderData(allProducts);
-  renderCart(); // Call renderCart to display cart items when the page loads
+  renderCart();
 };
 // Event listeners
 document.addEventListener("DOMContentLoaded", init);
