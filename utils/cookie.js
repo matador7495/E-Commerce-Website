@@ -4,7 +4,7 @@ const setCookie = (data) => {
   // - value: data
   // - maxAge: 1 day (60 seconds * 60 minutes * 24 hours)
   // - path: / (so the cookie is accessible from all pages on the site)
-  document.cookie = `token=${data};max-age=${60 * 60 * 24};path=/`;
+  document.cookie = `token=${data};max-age=${60 * 60 * 24};path=/; SameSite=Lax`;
 };
 const getCookie = () => {
   // Get the cookie from the browser
