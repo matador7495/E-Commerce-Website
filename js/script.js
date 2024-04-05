@@ -1,5 +1,7 @@
 // Import fetchData function from httpReq.js
 import { fetchData } from "/utils/httpReq.js";
+// Import setCookie function from cookie.js
+import { getCookie } from "/utils/cookie.js";
 // Import functions from cart.js
 import { getCartItems, addToCart, renderCart } from "./cart.js";
 // Selectors
@@ -10,6 +12,8 @@ const cartBtn = document.querySelector(".cart-button");
 const cartMenu = document.querySelector(".cart-menu");
 const closeBtn = document.querySelector(".close-btn");
 const viewToggleButton = document.querySelector(".btn-view-toggle");
+const loginButton = document.querySelector("#login");
+const dashboardButton = document.querySelector("#dashboard");
 let allProducts = [];
 let isAllDisplayed = false;
 let displayedProductsCount = 4;
@@ -60,6 +64,12 @@ viewToggleButton.addEventListener("click", (event) => {
 });
 // Initialize the application
 const init = async () => {
+  const cookie = getCookie();
+  if (cookie) {
+    loginButton.style.display = "none";
+  } else {
+    dashboardButton.style.display = "none";
+  }
   allProducts = await fetchData();
   renderData(allProducts.slice(0, displayedProductsCount));
   renderCart();
