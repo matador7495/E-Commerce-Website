@@ -1,25 +1,3 @@
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  list-style: none;
-  text-decoration: none;
-  scroll-behavior: smooth;
-  font-family: "Poppins", sans-serif;
-}
-:root {
-  --bg-color: #ffffff;
-  --text-color: #000000;
-  --main-color: #f0f0f0;
-  --other-color: #fdbd18;
-  --second-color: #616060;
-  --h1-font: 5.5rem;
-  --h2-font: 3.5rem;
-  --p-font: 1rem;
-}
-body {
-  background-color: var(--bg-color);
-}
 header {
   position: fixed;
   top: 0;

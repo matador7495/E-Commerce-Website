@@ -4,12 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login Page</title>
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/global.css" />
     <link rel="stylesheet" href="/css/auth.css" />
+    <!-- remix icons link -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
   </head>
   <body>
+    <!-- login form -->
     <div class="login-container">
-      <h1>Login</h1>
+      <h1><i class="ri-user-fill icon"></i>Login</h1>
       <form>
         <div class="form-group">
           <label for="username">Username:</label>
@@ -22,6 +25,13 @@
         <button type="submit">Login</button>
         <a href="/index.html" class="back-link">Back</a>
       </form>
+    </div>
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close"><i class="ri-close-line"></i></span>
+        <p>Something went wrong, please try again</p>
+      </div>
     </div>
     <script type="module" src="/js/auth.js"></script>
   </body>

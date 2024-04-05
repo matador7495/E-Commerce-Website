@@ -24,9 +24,15 @@ const submitHandler = async (event) => {
       // Redirect the user to the homepage
       location.assign("/index.html");
     } catch (error) {
-      console.log(error);
+      openModal();
     }
   }
+};
+function openModal() {
+  document.getElementById("myModal").style.display = "block";
+}
+document.getElementsByClassName("close")[0].onclick = function () {
+  document.getElementById("myModal").style.display = "none";
 };
 // Add an event listener to the submit button
 loginButton.addEventListener("click", submitHandler);
