@@ -14,6 +14,7 @@ const addToCart = (product) => {
   }
   localStorage.setItem("cartItems", JSON.stringify(cartItems));
   renderCart();
+  updateCartBadge();
   // Change button text to "In Cart" after adding the product
   const buttons = document.querySelectorAll(`.product[data-id="${product.id}"] .add-to-cart`);
   buttons.forEach((button) => {
@@ -22,6 +23,20 @@ const addToCart = (product) => {
     button.classList.remove("add-to-cart");
   });
 };
+// Function to update the cart badge with stored count
+const updateCartBadge = () => {
+  const cartItems = getCartItems();
+  const cartBadge = document.getElementById("cart-items-count");
+  if (cartBadge) {
+    cartBadge.textContent = cartItems.length;
+  } else {
+    cartBadge.textContent = 0;
+  }
+};
+// Call updateCartBadge when the page loads to set the initial count
+document.addEventListener("DOMContentLoaded", () => {
+  updateCartBadge();
+});
 // Function to decrease the quantity of a product in the cart
 const decreaseQuantity = (productId) => {
   const cartItems = getCartItems();
@@ -50,6 +65,7 @@ const removeItemFromCart = (productId) => {
   cartItems = cartItems.filter((item) => item.id !== productId);
   localStorage.setItem("cartItems", JSON.stringify(cartItems));
   renderCart();
+  updateCartBadge();
   // Change button text back to "Add to Cart" after removing the product
   const productButton = document.querySelector(`.product[data-id="${productId}"] .disabled`);
   if (productButton) {
